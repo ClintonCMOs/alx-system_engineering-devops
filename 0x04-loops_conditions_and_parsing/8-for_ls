@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-#using ls as a variable
+# This script displays the content of the current directory in a list format,
+# showing only the part of the name after the first dash.
 
-list=$(ls)
-for i in $list
-do
-    echo "$i" | cut -d'-' -f 2
+for file in *; do
+    # Check if the file is not hidden and has a dash in its name
+    if [[ ! $file =~ ^\.[^.].*$ && $file =~ ^[^-]*-(.*)$ ]]; then
+        echo "${BASH_REMATCH[1]}"
+    fi
 done
