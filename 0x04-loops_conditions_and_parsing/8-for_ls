@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# displays the content of the current directory
-#  List format
-#  part of the name after the first dash is displayed
-
-for i in *;
+# script displays the contents of the current directory in a list format
+# Only the part of the name after the first dash is displayed
+for file in *
 do
-    echo "$i" | cut -d'-' -f2
+    if [ -f "$file" ] && [ "${file:0:1}" != "." ]
+    then
+        name="${file#*-}"
+        echo "$name"
+    fi
 done
