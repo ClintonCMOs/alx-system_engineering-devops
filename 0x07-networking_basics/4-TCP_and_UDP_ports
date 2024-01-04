@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# A bash script to display listening ports that shows listening sockets
+# Also shows PID and name of the program to which the socket belongs
+netstat -tulp 
