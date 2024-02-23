@@ -1,9 +1,7 @@
-# Install package
-class flask_install {
-  package { 'Flask':
-    ensure   => '2.1.0',
-    provider => 'pip3',
-  }
-}
+# installs flask package
 
-include flask_install
+package {'flask':
+  ensure   => '2.1.0',
+  name     => 'flask',
+  provider => 'pip3'
+}
