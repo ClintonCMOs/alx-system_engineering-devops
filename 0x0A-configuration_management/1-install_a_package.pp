@@ -1,7 +1,5 @@
-# installs flask package
-
-package {'flask':
-  ensure   => '2.1.0',
-  name     => 'flask',
-  provider => 'pip3'
+# Install Flask
+exec { 'install flask':
+  command => '/usr/bin/pip3 install Flask==2.1.0',
+  path    => ['/usr/bin'],
 }
