@@ -1,5 +1,6 @@
-# Install Flask
+#install a flask from pip3
 exec { 'install flask':
-  command => '/usr/bin/pip3 install Flask==2.1.0',
-  path    => ['/usr/bin'],
+  command =>  'pip3 install flask==2.1.0',
+  path    =>  '/usr/bin/',
+  unless  =>  'pip3 list | grep flask',
 }
