@@ -1,8 +1,5 @@
-class flask_install {
-  package { 'Flask':
-    ensure   => '2.1.0',
-    provider => 'pip3',
-  }
+# Install package
+package { 'puppet-lint':
+  ensure   => '2.1.1',
+  provider => 'gem',
 }
-
-include flask_install
