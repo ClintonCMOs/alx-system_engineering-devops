@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # A script to connect to a remote server via ssh
-ssh ubuntu@100.26.225.177 -i ~/.ssh/school
+ssh ubuntu@54.162.49.69 -i ~/.ssh/school
