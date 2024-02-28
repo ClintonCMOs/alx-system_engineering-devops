@@ -1,0 +1,4 @@
+# Configuring the ssh to login to a server without a password.
+Host *
+      PasswordAuthentication no
+      IdentityFile ~/.ssh/school
