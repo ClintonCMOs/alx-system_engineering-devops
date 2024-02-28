@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#Generate ssh private key of size 4096 bits and stores it in school file
+ssh-keygen -t rsa -b 4096 -N betty -f school
