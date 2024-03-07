@@ -1,26 +1,25 @@
-# Add a custom HTTP header with puppet
-# Custom HTTP header must be X-Served-By
+# Installs a Nginx server with custome HTTP header
 
-exec { 'update system':
-  command => '/usr/bin/apt-get update',
-}
-package { 'nginx':
-  ensure  => 'installed',
-  require => Exec['update system']
-}
-file {'/var/www/html/index.html':
-  content => 'Hello World!',
-}
-exec {'redirect_me':
-  command  => 'sed -i "24i\	rewrite ^/redirect_me https://github.com permanent;" /etc/nginx/sites-available/default',
-  provider => 'shell'
-}
-exec {'HTTP header':
-  command  => 'sed -i "25i\	add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default',
-  provider => 'shell'
+exec {'update':
+  provider => shell,
+  command  => 'sudo apt-get -y update',
+  before   => Exec['install Nginx'],
 }
 
-service {'nginx':
-  ensure => running;
-  require => Package['nginx']
+exec {'install Nginx':
+  provider => shell,
+  command  => 'sudo apt-get -y install nginx',
+  before   => Exec['add_header'],
+}
+
+exec { 'add_header':
+  provider    => shell,
+  environment => ["HOST=${hostname}"],
+  command     => 'sudo sed -i "s/include \/etc\/nginx\/sites-enabled\/\*;/include \/etc\/nginx\/sites-enabled\/\*;\n\tadd_header X-Served-By \"$HOST\";/" /etc/nginx/nginx.conf',
+  before      => Exec['restart Nginx'],
+}
+
+exec { 'restart Nginx':
+  provider => shell,
+  command  => 'sudo service nginx restart',
 }
