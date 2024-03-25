@@ -8,9 +8,10 @@ and print the information in the specified format
 After that, it will export data in the CSV format
 """
 
+import csv
 import requests
 import sys
-import csv
+
 
 if __name__ == '__main__':
     employeeId = sys.argv[1]
@@ -27,5 +28,5 @@ if __name__ == '__main__':
     with open('{}.csv'.format(employeeId), 'w') as file:
         for task in tasks:
             file.write('"{}","{}","{}","{}"\n'
-                    .format(employeeId, username, task.get('completed'),
-                            task.get('title')))
+                       .format(employeeId, username, task.get('completed'),
+                               task.get('title')))
