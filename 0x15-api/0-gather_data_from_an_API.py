@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-The script will fetch data from a fictional API 
+The script will fetch data from a fictional API
 about an employee's TODO list progress
-It will accept an employee ID as an integer parameter 
+It will accept an employee ID as an integer parameter
 and print the information in the specified format
 """
 
